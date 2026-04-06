@@ -81,3 +81,23 @@ function setLevelDisabled(disabled) {
     levels[i].disabled = disabled;
   }
 }
+
+function play() {
+  range = getSelectedRange();
+  answer = Math.floor(Math.random() * range) + 1;
+  guesses = 0;
+  roundStart = new Date().getTime();
+  gameActive = true;
+
+  document.getElementById("msg").textContent =
+    playerName + ", guess a number between 1 and " + range + ".";
+
+  document.getElementById("guessBtn").disabled = false;
+  document.getElementById("giveUpBtn").disabled = false;
+  document.getElementById("playBtn").disabled = true;
+  document.getElementById("guess").disabled = false;
+  document.getElementById("guess").value = "";
+  document.getElementById("guess").focus();
+
+  setLevelDisabled(true);
+}
