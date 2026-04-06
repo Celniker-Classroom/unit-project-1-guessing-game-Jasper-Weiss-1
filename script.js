@@ -64,3 +64,20 @@ function time() {
 function updateDateDisplay() {
   document.getElementById("date").textContent = time();
 }
+
+function getSelectedRange() {
+  var levels = document.getElementsByName("level");
+  for (var i = 0; i < levels.length; i++) {
+    if (levels[i].checked) {
+      return Number(levels[i].value);
+    }
+  }
+  return 3;
+}
+
+function setLevelDisabled(disabled) {
+  var levels = document.getElementsByName("level");
+  for (var i = 0; i < levels.length; i++) {
+    levels[i].disabled = disabled;
+  }
+}
