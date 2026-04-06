@@ -101,3 +101,13 @@ function play() {
 
   setLevelDisabled(true);
 }
+
+
+
+
+
+
+
+document.getElementById("playBtn").addEventListener("click", play);
+document.getElementById("guessBtn").addEventListener("click", makeGuess);
+document.getElementById("giveUpBtn").addEventListener("click", giveUp);
