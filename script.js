@@ -107,7 +107,8 @@ function play() {
 
 
 
-
+updateDateDisplay();
+setInterval(updateDateDisplay, 1000);
 document.getElementById("playBtn").addEventListener("click", play);
 document.getElementById("guessBtn").addEventListener("click", makeGuess);
 document.getElementById("giveUpBtn").addEventListener("click", giveUp);
