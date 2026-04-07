@@ -102,8 +102,20 @@ function play() {
   setLevelDisabled(true);
 }
 
+function updateLeaderboard() {
+  scores.sort(function (a, b) {
+    return a - b;
+  });
 
-
+  var spots = document.getElementsByName("leaderboard");
+  for (var i = 0; i < spots.length; i++) {
+    if (i < scores.length) {
+      spots[i].textContent = scores[i];
+    } else {
+      spots[i].textContent = "--";
+    }
+  }
+}
 
 
 
@@ -112,3 +124,4 @@ setInterval(updateDateDisplay, 1000);
 document.getElementById("playBtn").addEventListener("click", play);
 document.getElementById("guessBtn").addEventListener("click", makeGuess);
 document.getElementById("giveUpBtn").addEventListener("click", giveUp);
+
