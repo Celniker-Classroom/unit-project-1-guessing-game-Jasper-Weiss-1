@@ -136,8 +136,27 @@ function updateScore(score, isWin) {
   }
 }
 
+function updateTimers(endMs) {
+  var elapsed = (endMs - roundStart) / 1000;
+  roundTimes.push(elapsed);
 
+  if (fastestTime === null || elapsed < fastestTime) {
+    fastestTime = elapsed;
+  }
 
+  var total = 0;
+  for (var i = 0; i < roundTimes.length; i++) {
+    total += roundTimes[i];
+  }
+
+  var average = total / roundTimes.length;
+
+  document.getElementById("fastest").textContent =
+    "Fastest Game: " + fastestTime.toFixed(2) + " seconds";
+
+  document.getElementById("avgTime").textContent =
+    "Average Time: " + average.toFixed(2) + " seconds";
+}
 
 updateDateDisplay();
 setInterval(updateDateDisplay, 1000);
