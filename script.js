@@ -117,6 +117,26 @@ function updateLeaderboard() {
   }
 }
 
+function updateScore(score, isWin) {
+  scores.push(score);
+  updateLeaderboard();
+
+  if (isWin) {
+    wins++;
+    totalWinningGuesses += score;
+  }
+
+  document.getElementById("wins").textContent = "Total wins: " + wins;
+
+  if (wins > 0) {
+    document.getElementById("avgScore").textContent =
+      "Average Score: " + (totalWinningGuesses / wins);
+  } else {
+    document.getElementById("avgScore").textContent = "Average Score: 0";
+  }
+}
+
+
 
 
 updateDateDisplay();
