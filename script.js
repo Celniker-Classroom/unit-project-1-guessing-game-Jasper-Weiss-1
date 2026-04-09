@@ -158,6 +158,17 @@ function updateTimers(endMs) {
     "Average Time: " + average.toFixed(2) + " seconds";
 }
 
+function reset() {
+  gameActive = false;
+  document.getElementById("guessBtn").disabled = true;
+  document.getElementById("giveUpBtn").disabled = true;
+  document.getElementById("playBtn").disabled = false;
+  document.getElementById("guess").disabled = false;
+  document.getElementById("guess").value = "";
+  setLevelDisabled(false);
+}
+
+
 updateDateDisplay();
 setInterval(updateDateDisplay, 1000);
 document.getElementById("playBtn").addEventListener("click", play);
