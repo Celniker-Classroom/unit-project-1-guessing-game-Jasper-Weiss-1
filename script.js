@@ -121,12 +121,12 @@ function updateScore(score, isWin) {
   scores.push(score);
   updateLeaderboard();
 
+  wins++;
+  document.getElementById("wins").textContent = "Total wins: " + wins;
+
   if (isWin) {
-    wins++;
     totalWinningGuesses += score;
   }
-
-  document.getElementById("wins").textContent = "Total wins: " + wins;
 
   if (wins > 0) {
     document.getElementById("avgScore").textContent =
