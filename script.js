@@ -168,9 +168,72 @@ function reset() {
   setLevelDisabled(false);
 }
 
+function makeGuess() {
+  if (!gameActive) {
+    return;
+  }
+
+  var guessValue = Number(document.getElementById("guess").value);
+
+  if (isNaN(guessValue) || guessValue < 1 || guessValue > range) {
+    document.getElementById("msg").textContent =
+      playerName + ", enter a valid guess between 1 and " + range + ".";
+    return;
+  }
+
+  guesses++;
+
+  if (guessValue === answer) {
+    document.getElementById("msg").textContent =
+      "Correct, " + playerName + "! You got it in " + guesses + " guesses.";
+    document.getElementById("guessBtn").disabled = true;
+    document.getElementById("giveUpBtn").disabled = true;
+
+    updateScore(guesses, true);
+    updateTimers(new Date().getTime());
+    reset();
+    return;
+  }
+
+  var diff = Math.abs(guessValue - answer);
+  var tempWord = "";
+
+  if (diff <= 2) {
+    tempWord = "hot";
+  } else if (diff <= 5) {
+    tempWord = "warm";
+  } else {
+    tempWord = "cold";
+  }
+
+  if (guessValue > answer) {
+    document.getElementById("msg").textContent =
+      playerName + ", too high. You are " + tempWord + ".";
+  } else {
+    document.getElementById("msg").textContent =
+      playerName + ", too low. You are " + tempWord + ".";
+  }
+
+  document.getElementById("guess").value = "";
+  document.getElementById("guess").focus();
+}
+
+function giveUp() {
+  if (!gameActive) {
+    return;
+  }
+
+  document.getElementById("msg").textContent =
+    playerName + ", you gave up. The correct number was " + answer + ".";
+
+  updateScore(range, false);
+  updateTimers(new Date().getTime());
+  reset();
+}
 
 updateDateDisplay();
 setInterval(updateDateDisplay, 1000);
+
 document.getElementById("playBtn").addEventListener("click", play);
 document.getElementById("guessBtn").addEventListener("click", makeGuess);
 document.getElementById("giveUpBtn").addEventListener("click", giveUp);
